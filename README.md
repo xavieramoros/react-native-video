@@ -142,7 +142,9 @@ using System.Collections.Generic;
        onError={this.videoError}               // Callback when video cannot be loaded
        onBuffer={this.onBuffer}                // Callback when remote video is buffering
        onTimedMetadata={this.onTimedMetadata}  // Callback when the stream receive some metadata
-       style={styles.backgroundVideo} />
+       style={styles.backgroundVideo}
+       async={false}                           // true doesn't block UI when loading source URI 
+       />
 
 // Later to trigger fullscreen
 this.player.presentFullscreenPlayer()
