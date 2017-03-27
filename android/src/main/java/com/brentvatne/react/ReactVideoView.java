@@ -108,7 +108,6 @@ public class ReactVideoView extends ScalableVideoView implements MediaPlayer.OnP
     private int mVideoBufferedDuration = 0;
     private boolean isCompleted = false;
     private boolean mUseNativeControls = false;
-    private boolean mAsync = false;
 
     public ReactVideoView(ThemedReactContext themedReactContext) {
         super(themedReactContext);
@@ -300,11 +299,7 @@ public class ReactVideoView extends ScalableVideoView implements MediaPlayer.OnP
         mEventEmitter.receiveEvent(getId(), Events.EVENT_LOAD_START.toString(), event);
 
         try {
-            if(mAsync) {
-                prepareAsync(this); 
-            }else {
-                prepare(this); 
-            }
+            prepareAsync(this); 
         } catch (Exception e) {
           e.printStackTrace();
         }
@@ -403,10 +398,6 @@ public class ReactVideoView extends ScalableVideoView implements MediaPlayer.OnP
 
     public void setControls(boolean controls) {
         this.mUseNativeControls = controls;
-    }
-
-    public void setAsync(boolean async) {
-        this.mAsync = async;
     }
 
     @Override
